@@ -116,6 +116,11 @@ public class EntrepriseServiceImpl implements EntrepriseService {
     }
 
     @Override
+    public List<Entreprise> findByName(String name) {
+        return entrepriseRepository.findByNom(name);
+    }
+
+    @Override
     public ResponseEntity<String> addFieul(Etudiant etudiant, Long id) {
         Optional<Entreprise> uses = entrepriseRepository.findById(id);
         if (uses.isEmpty())

@@ -22,10 +22,10 @@ public class Entreprise {
     private Long contributeNumber;
 
     @Column(length = 100)
-    private String Location;
+    private String location;
 
     @Column(length = 100)
-    private long numWhatsApp;
+    private Long numWhatsApp;
 
     @Column(length = 100)
     private String mail;
@@ -49,11 +49,11 @@ public class Entreprise {
         super();
     }
 
-    public Entreprise(Long id, String nom, Long contributeNumber, String location, long numWhatsApp, String mail, String password, String photo) {
+    public Entreprise(Long id, String nom, Long contributeNumber, String location, Long numWhatsApp, String mail, String password, String photo) {
         this.id = id;
-        this.nom = nom;
+        this.nom = nom.toUpperCase();
         this.contributeNumber = contributeNumber;
-        Location = location;
+        this.location = location.toUpperCase();
         this.numWhatsApp = numWhatsApp;
         this.mail = mail;
         this.password = password;
@@ -77,14 +77,14 @@ public class Entreprise {
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     public void setLocation(String location) {
-        Location = location;
+        this.location = location;
     }
 
-    public long getNumWhatsApp() {
+    public Long getNumWhatsApp() {
         return numWhatsApp;
     }
 
@@ -124,20 +124,6 @@ public class Entreprise {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "Entreprise{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", contributeNumber=" + contributeNumber +
-                ", Location='" + Location + '\'' +
-                ", numWhatsApp=" + numWhatsApp +
-                ", mail='" + mail + '\'' +
-                ", password='" + password + '\'' +
-                ", photo='" + photo + '\'' +
-                '}';
-    }
-
     public List<Etudiant> getSponsorisees() {
         return sponsorisees;
     }
@@ -160,5 +146,19 @@ public class Entreprise {
 
     public void setEmployees(List<Etudiant> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Entreprise{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", contributeNumber=" + contributeNumber +
+                ", location='" + location + '\'' +
+                ", numWhatsApp=" + numWhatsApp +
+                ", mail='" + mail + '\'' +
+                ", password='" + password + '\'' +
+                ", photo='" + photo + '\'' +
+                '}';
     }
 }

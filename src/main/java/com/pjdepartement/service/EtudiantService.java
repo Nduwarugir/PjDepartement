@@ -1,8 +1,8 @@
-package com.pjdepartement;
+package com.pjdepartement.service;
 
 import java.util.List;
 
-import com.pjdepartement.microservice.entity.Etudiant;
+import com.pjdepartement.entity.Etudiant;
 import org.springframework.http.ResponseEntity;
 
 public interface EtudiantService {
@@ -13,6 +13,7 @@ public interface EtudiantService {
 	    Etudiant getEtudiant(Long id);
 	    String delete(Long id);
 		List<Etudiant> findByNom(String nom);
+		List<Etudiant> findByPrenom(String prenom);
 		Etudiant findByMatricule(String matricule);
 		List<Etudiant> findByxpLanguage(String xpLanguage);
 }

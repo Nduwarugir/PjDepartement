@@ -1,4 +1,4 @@
-package com.pjdepartement;
+package com.pjdepartement.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +24,9 @@ import jakarta.persistence.Table;
 	    private String matricule;
 
 	    @Column(length = 100)
+	    private String numFiche;
+
+	    @Column(length = 100)
 	    private String xpLanguage;
 
 	    @Column(length = 100)
@@ -42,12 +45,13 @@ import jakarta.persistence.Table;
 	        super();
 	    }
 
-	    public Etudiant(long idEtudiant, String nom, String prenom, String matricule, String xpLanguage, String password, String photo, String niveau, long numWhatsApp) {
+	    public Etudiant(long idEtudiant, String nom, String prenom, String matricule, String numFiche, String xpLanguage, String password, String photo, String niveau, long numWhatsApp) {
 	        this.idEtudiant = idEtudiant;
 	        this.nom = nom;
 	        this.prenom = prenom;
 	        this.matricule = matricule;
-	        this.xpLanguage = xpLanguage;
+			this.numFiche = numFiche;
+			this.xpLanguage = xpLanguage;
 	        this.password = password;
 	        this.photo = photo;
 	        this.niveau = niveau;
@@ -139,4 +143,11 @@ import jakarta.persistence.Table;
 	                '}';
 	    }
 
-}
+		public String getNumFiche() {
+			return numFiche;
+		}
+
+		public void setNumFiche(String numFiche) {
+			this.numFiche = numFiche;
+		}
+	}

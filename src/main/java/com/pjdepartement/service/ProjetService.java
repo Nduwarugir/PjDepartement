@@ -1,8 +1,8 @@
-package com.pjdepartement;
+package com.pjdepartement.service;
 
 import java.util.List;
 
-import com.pjdepartement.microservice.entity.Projet;
+import com.pjdepartement.entity.Projet;
 import org.springframework.http.ResponseEntity;
 
 public interface ProjetService {

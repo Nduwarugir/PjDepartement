@@ -1,4 +1,4 @@
-package com.pjdepartement;
+package com.pjdepartement.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

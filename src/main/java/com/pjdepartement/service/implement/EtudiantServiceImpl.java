@@ -1,16 +1,18 @@
-package com.pjdepartement;
+package com.pjdepartement.service.implement;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.pjdepartement.microservice.entity.Etudiant;
+import com.pjdepartement.entity.Etudiant;
+import com.pjdepartement.entity.repository.EtudiantRepository;
+import com.pjdepartement.service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.pjdepartement.microservice.entity.repository.EtudiantRepository;
-import com.pjdepartement.microservice.service.EtudiantService;
+import org.springframework.stereotype.Service;
 
-public class EtudiantServiceImpl implements EtudiantService{
+@Service
+public class EtudiantServiceImpl implements EtudiantService {
 
 	@Autowired
     EtudiantRepository etudiantRepository;
@@ -48,6 +50,7 @@ public class EtudiantServiceImpl implements EtudiantService{
         }
 
     }
+
     @Override
     public ResponseEntity<String> update(Etudiant etudiant, Long id) {
         Optional<Etudiant> use = etudiantRepository.findById(id);
@@ -80,7 +83,6 @@ public class EtudiantServiceImpl implements EtudiantService{
                 HttpStatus.OK);
     }
 
-
     @Override
     public List<Etudiant> getAll() {
         return etudiantRepository.findAll();
@@ -92,24 +94,30 @@ public class EtudiantServiceImpl implements EtudiantService{
             return etudiantRepository.findById(id).get();
         else return null;
     }
+
     @Override
     public String delete(Long id) {
         etudiantRepository.deleteById(id);
         return "l'etudiant a été supprimé";
     }
+
 	@Override
 	public List<Etudiant> findByNom(String nom) {
-		// TODO Auto-generated method stub
 		return etudiantRepository.findByNom(nom);
 	}
-	@Override
+
+    @Override
+    public List<Etudiant> findByPrenom(String prenom) {
+        return etudiantRepository.findByPrenom(prenom);
+    }
+
+    @Override
 	public Etudiant findByMatricule(String matricule) {
-		// TODO Auto-generated method stub
 		return etudiantRepository.findByMatricule(matricule);
 	}
-	@Override
+
+    @Override
 	public List<Etudiant> findByxpLanguage(String xpLanguage) {
-		// TODO Auto-generated method stub
 		return etudiantRepository.findByxpLanguage(xpLanguage);
 	}
 }

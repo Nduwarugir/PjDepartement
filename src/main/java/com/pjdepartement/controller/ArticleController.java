@@ -1,18 +1,16 @@
-package com.pjdepartement;
+package com.pjdepartement.controller;
 
 import java.util.List;
 
-import com.pjdepartement.microservice.service.ArticleService;
-import com.pjdepartement.microservice.entity.Article;
+import com.pjdepartement.service.ArticleService;
+import com.pjdepartement.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+
+@RestController
+@RequestMapping(path = "/Article")
 public class ArticleController {
 
 	@Autowired
@@ -28,23 +26,23 @@ public class ArticleController {
         return articleService.updateArticle(article, id);
     }
 
-    @GetMapping(path = "/read")
-    public List<Article> readAllArticle(){
-        return articleService.getAll();
-    }
-
     @DeleteMapping(path = "/delete/{id}")
     public String deleteArticle(@PathVariable Long id){
         return articleService.deleteArticle(id);
     }
 
-    @GetMapping("/theme/{theme}")
+    @GetMapping(path = "/read")
+    public List<Article> readAllArticle(){
+        return articleService.getAll();
+    }
+
+    @GetMapping("/read/theme/{theme}")
     public List<Article> getArticleBytheme(@PathVariable String theme) {
         return articleService.findByTheme(theme);
     }
 
-    @GetMapping("/nameAuteur/{nom}")
-    public List<Article> getArticleByAuteur(@PathVariable String nom) {
-        return articleService.findByNameAuteur(nom);
+    @GetMapping("/read/name/{name}")
+    public List<Article> getArticleByAuteur(@PathVariable String name) {
+        return articleService.findByNameAuteur(name);
     }
 }

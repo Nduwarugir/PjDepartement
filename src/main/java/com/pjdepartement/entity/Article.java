@@ -1,4 +1,4 @@
-package com.pjdepartement;
+package com.pjdepartement.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ public class Article {
 	@Column(length = 50)
 	private String theme;
 	@Column(length = 50)
-	private String Description;
+	private String description;
 	@Column(length = 50)
 	private String nameAuteur;
 	
@@ -26,10 +26,9 @@ public class Article {
 	}
 
 	public Article(String theme, String description, String nameAuteur) {
-		super();
-		this.theme = theme;
-		Description = description;
-		this.nameAuteur = nameAuteur;
+		this.theme = theme.toUpperCase();
+		this.description = description.toUpperCase();
+		this.nameAuteur = nameAuteur.toUpperCase();
 	}
 
 	public long getIdArticle() {
@@ -49,11 +48,11 @@ public class Article {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public String getNameAuteur() {
@@ -66,7 +65,7 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [idArticle=" + idArticle + ", theme=" + theme + ", Description=" + Description + ", nameAuteur="
+		return "Article [idArticle=" + idArticle + ", theme=" + theme + ", description=" + description + ", nameAuteur="
 				+ nameAuteur + "]";
 	}
 }

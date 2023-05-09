@@ -1,20 +1,22 @@
-package com.pjdepartement;
+package com.pjdepartement.service.implement;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.pjdepartement.microservice.entity.Projet;
+import com.pjdepartement.entity.repository.ProjetRepository;
+import com.pjdepartement.entity.Projet;
+import com.pjdepartement.service.ProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.pjdepartement.microservice.entity.repository.ProjetRepository;
-import com.pjdepartement.microservice.service.ProjetService;
+import org.springframework.stereotype.Service;
 
-public class ProjetServiceImplement implements ProjetService{
+@Service
+public class ProjetServiceImplement implements ProjetService {
 
 	
 	@Autowired
-    ProjetRepository projetRepository;
+	ProjetRepository projetRepository;
 	@Override
 	public ResponseEntity<String> create(Projet projet) {
 		try {

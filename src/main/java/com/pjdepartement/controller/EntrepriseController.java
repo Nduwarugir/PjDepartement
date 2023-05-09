@@ -26,16 +26,6 @@ public class EntrepriseController {
         return entrepriseService.update(entreprise, id);
     }
 
-    @GetMapping(path = "/read")
-    public List<Entreprise> readAllEntreprise(){
-        return entrepriseService.getAll();
-    }
-//
-//    @GetMapping(path = "/read/{id}")
-//    public Entreprise readEntreprise(@PathVariable Long id){
-//        return entrepriseService.getEnterprise(id);
-//    }
-
     @DeleteMapping(path = "/delete/{id}")
     public String deleteEntreprise(@PathVariable Long id){
         return entrepriseService.delete(id);
@@ -46,5 +36,19 @@ public class EntrepriseController {
         return entrepriseService.addFieul(etudiant, id);
     }
 
+    @GetMapping(path = "/read")
+    public List<Entreprise> readAllEntreprise(){
+        return entrepriseService.getAll();
+    }
+
+    @GetMapping(path = "/read/{id}")
+    public Entreprise readEntreprise(@PathVariable Long id){
+        return entrepriseService.getEnterprise(id);
+    }
+
+    @GetMapping(path = "/read/name/{name}")
+    public List<Entreprise> getEntrepriseByName(@PathVariable String name){
+        return entrepriseService.findByName(name);
+    }
 
 }

@@ -45,12 +45,12 @@ public class Enseignant {
 
     public Enseignant(Long idEnseignant, String nom, String prenom, String matricule, String domain, String mail, String titre, String password, String photo, long numWhatsApp) {
         this.idEnseignant = idEnseignant;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.matricule = matricule;
-        this.domain = domain;
+        this.nom = nom.toUpperCase();
+        this.prenom = prenom.toUpperCase();
+        this.matricule = matricule.toUpperCase();
+        this.domain = domain.toUpperCase();
         this.mail = mail;
-        this.titre = titre;
+        this.titre = titre.toUpperCase();
         this.password = password;
         this.photo = photo;
         this.numWhatsApp = numWhatsApp;

@@ -1,8 +1,8 @@
-package com.pjdepartement;
+package com.pjdepartement.entity.repository;
 
 import java.util.List;
 
-import com.pjdepartement.microservice.entity.Article;
+import com.pjdepartement.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArticleRepository extends JpaRepository<Article, Long>{

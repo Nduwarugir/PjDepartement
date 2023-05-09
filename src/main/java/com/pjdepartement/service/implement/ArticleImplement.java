@@ -1,16 +1,18 @@
-package com.pjdepartement;
+package com.pjdepartement.service.implement;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.pjdepartement.microservice.entity.Article;
-import com.pjdepartement.microservice.entity.repository.ArticleRepository;
-import com.pjdepartement.microservice.service.ArticleService;
+import com.pjdepartement.entity.repository.ArticleRepository;
+import com.pjdepartement.service.ArticleService;
+import com.pjdepartement.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class ArticleImplement implements ArticleService {
 
 	@Autowired

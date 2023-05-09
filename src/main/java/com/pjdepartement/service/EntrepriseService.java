@@ -14,6 +14,7 @@ public interface EntrepriseService {
     Entreprise getEnterprise(Long id);
     List<Entreprise> getAll();
     String delete(Long id);
+    List<Entreprise> findByName(String name);
     ResponseEntity<String> addFieul(Etudiant etudiant, Long id);
 
 }
