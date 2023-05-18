@@ -27,7 +27,7 @@ public class AdminController {
     }
 
     @PostMapping(path = "/create/pub")
-    public ResponseEntity<String> createPublication(Publication pub){
+    public ResponseEntity<String> createPublication(@RequestBody Publication pub){
         return adminService.createPub(pub);
     }
 
@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @PutMapping(path = "/update/pub/{id}")
-    public ResponseEntity<String> updatePublication(Publication pub, @PathVariable Long id){
+    public ResponseEntity<String> updatePublication(@RequestBody Publication pub, @PathVariable Long id){
         return adminService.updatePub(pub, id);
     }
 
