@@ -2,7 +2,7 @@ package com.mono.pjdepartement.service;
 
 import java.util.List;
 
-import com.mono.pjdepartement.entity.metier.Recommendation;
+import com.mono.pjdepartement.entity.app.Recommendation;
 import org.springframework.http.ResponseEntity;
 
 public interface RecommendationService {

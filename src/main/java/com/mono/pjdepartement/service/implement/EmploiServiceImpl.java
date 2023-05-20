@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.mono.pjdepartement.entity.app.Emploi;
-import com.mono.pjdepartement.entity.repository.OffreEmploieRepository;
+import com.mono.pjdepartement.entity.repository.EmploiRepository;
 import com.mono.pjdepartement.service.EmploiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class EmploiServiceImpl implements EmploiService {
 	
 	@Autowired
-	OffreEmploieRepository offreEmploieRepository;
+    EmploiRepository emploiRepository;
 
 	@Override
 	public ResponseEntity<String> createOffreEmploi(Emploi emploie) {
@@ -35,9 +35,9 @@ public class EmploiServiceImpl implements EmploiService {
                         "Vous devez entrer un Domaine",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
-            offreEmploieRepository.save(emploie);
+            emploiRepository.save(emploie);
             return new ResponseEntity<>(
-                    "L'offre d'emploie a été enregistré avec succès" + offreEmploieRepository.save(emploie),
+                    "L'offre d'emploie a été enregistré avec succès" + emploiRepository.save(emploie),
                     HttpStatus.OK);
         }catch(Exception e) {
             return new ResponseEntity<>(
@@ -48,7 +48,7 @@ public class EmploiServiceImpl implements EmploiService {
 
 	@Override
 	public ResponseEntity<String> updateEmploi(Emploi emploie, Long id) {
-		Optional<Emploi> use = offreEmploieRepository.findById(id);
+		Optional<Emploi> use = emploiRepository.findById(id);
         if(use.isEmpty()) {
             return new ResponseEntity<>(
                     "Student not found",
@@ -61,7 +61,7 @@ public class EmploiServiceImpl implements EmploiService {
             use.get().setDomaineRequis(emploie.getDescription());
         }
         
-        offreEmploieRepository.save(use.get());
+        emploiRepository.save(use.get());
         return new ResponseEntity<>(
                 "Modification reussie" ,
                 HttpStatus.OK);
@@ -69,29 +69,29 @@ public class EmploiServiceImpl implements EmploiService {
 
 	@Override
 	public List<Emploi> getAll() {
-		return offreEmploieRepository.findAll();
+		return emploiRepository.findAll();
 	}
 
 	@Override
 	public Emploi getEmploi(Long id) {
-		if (offreEmploieRepository.findById(id).isPresent())
-            return offreEmploieRepository.findById(id).get();
+		if (emploiRepository.findById(id).isPresent())
+            return emploiRepository.findById(id).get();
         else return null;
 	}
 
 	@Override
 	public String deleteEmploi(Long id) {
-		offreEmploieRepository.deleteById(id);
+		emploiRepository.deleteById(id);
         return "l'offre d'emploie a été supprimé";
 	}
 
 	@Override
 	public List<Emploi> findByPoste(String poste) {
-		return offreEmploieRepository.findByPoste(poste);//recherche d'une offre d'emploie par le poste
+		return emploiRepository.findByPoste(poste);//recherche d'une offre d'emploie par le poste
 	}
 	@Override
 	public Emploi findByDomainRequis(String domaineRequis) {
-		return offreEmploieRepository.findByDomaineRequis(domaineRequis);
+		return emploiRepository.findByDomaineRequis(domaineRequis);
 	}
      
 }

@@ -1,6 +1,8 @@
 package com.mono.pjdepartement.service.implement;
 
 
+import com.mono.pjdepartement.entity.app.Article;
+import com.mono.pjdepartement.entity.app.Projet;
 import com.mono.pjdepartement.entity.metier.Enseignant;
 import com.mono.pjdepartement.entity.repository.EnseignantRepository;
 import com.mono.pjdepartement.service.EnseignantService;
@@ -134,5 +136,57 @@ public class EnseignantServiceImpl implements EnseignantService {
     public String delete(Long id) {
         enseignantRepository.deleteById(id);
         return "l'enseignant a été supprimé";
+    }
+
+    @Override
+    public ResponseEntity<String> addArticle(Article article, Long id) {
+        Optional<Enseignant> uses = enseignantRepository.findById(id);
+        if (uses.isEmpty())
+            return new ResponseEntity<>(
+                    "Enseignant not found",
+                    HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+        List<Article> ens = uses.get().getArticles();
+        ens.add(article);
+        uses.get().setArticles(ens);
+
+        enseignantRepository.save(uses.get());
+        return new ResponseEntity<>(
+                "Ajout reussi: " + article,
+                HttpStatus.OK);
+    }
+
+    @Override
+    public List<Article> getAllArticles(Long id) {
+        Optional<Enseignant> uses = enseignantRepository.findById(id);
+        List<Article> articleList = null;
+        if (uses.isPresent())
+            articleList = uses.get().getArticles();
+        return articleList;
+    }
+
+    @Override
+    public ResponseEntity<String> addProjet(Projet projet, Long id) {
+        Optional<Enseignant> uses = enseignantRepository.findById(id);
+        if (uses.isEmpty())
+            return new ResponseEntity<>(
+                    "Enseignant not found",
+                    HttpStatus.INTERNAL_SERVER_ERROR); //renvoie une erreur 500
+        List<Projet> ens = uses.get().getProjects();
+        ens.add(projet);
+        uses.get().setProjects(ens);
+
+        enseignantRepository.save(uses.get());
+        return new ResponseEntity<>(
+                "Ajout reussi: " + projet,
+                HttpStatus.OK);
+    }
+
+    @Override
+    public List<Projet> getAllProjects(Long id) {
+        Optional<Enseignant> uses = enseignantRepository.findById(id);
+        List<Projet> projetList = null;
+        if (uses.isPresent())
+            projetList = uses.get().getProjects();
+        return projetList;
     }
 }

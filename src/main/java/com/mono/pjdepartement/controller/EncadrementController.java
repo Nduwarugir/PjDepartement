@@ -5,7 +5,7 @@ import java.util.List;
 import com.mono.pjdepartement.entity.metier.Enseignant;
 import com.mono.pjdepartement.entity.metier.Etudiant;
 import com.mono.pjdepartement.service.EncadrementService;
-import com.mono.pjdepartement.entity.metier.Encadrement;
+import com.mono.pjdepartement.entity.app.Encadrement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

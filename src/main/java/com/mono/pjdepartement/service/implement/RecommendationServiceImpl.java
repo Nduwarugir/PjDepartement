@@ -3,7 +3,7 @@ package com.mono.pjdepartement.service.implement;
 import java.util.List;
 import java.util.Optional;
 
-import com.mono.pjdepartement.entity.metier.Recommendation;
+import com.mono.pjdepartement.entity.app.Recommendation;
 import com.mono.pjdepartement.entity.repository.RecommendationRepository;
 import com.mono.pjdepartement.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;

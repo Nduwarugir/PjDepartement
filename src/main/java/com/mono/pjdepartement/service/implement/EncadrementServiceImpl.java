@@ -3,7 +3,7 @@ package com.mono.pjdepartement.service.implement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mono.pjdepartement.entity.metier.Encadrement;
+import com.mono.pjdepartement.entity.app.Encadrement;
 import com.mono.pjdepartement.entity.metier.Enseignant;
 import com.mono.pjdepartement.entity.metier.Etudiant;
 import com.mono.pjdepartement.entity.repository.EncadrementRepository;
@@ -30,17 +30,17 @@ public class EncadrementServiceImpl implements EncadrementService {
 
 	@Override
 	public List<Enseignant> getEnseignantsEncadrant(Etudiant etudiant) {
-		  List<Encadrement> encadrements = encadrementRepository.findByEtudiant(etudiant);
-		    List<Enseignant> enseignantsEncadrants = new ArrayList<>();
-		    for (Encadrement encadrement : encadrements) {
-		        enseignantsEncadrants.add(encadrement.getEnseignant());
-		    }
-		    return enseignantsEncadrants;
+		List<Encadrement> encadrements = encadrementRepository.findByEtudiant(etudiant);
+		List<Enseignant> enseignantsEncadrants = new ArrayList<>();
+		for (Encadrement encadrement : encadrements) {
+			enseignantsEncadrants.add(encadrement.getEnseignant());
+		}
+		return enseignantsEncadrants;
 	}
 
 	@Override
 	public List<Etudiant> getEtudiantsEncadres(Enseignant enseignant) {
-		 List<Encadrement> encadrements = encadrementRepository.findByEnseignant(enseignant);
+		List<Encadrement> encadrements = encadrementRepository.findByEnseignant(enseignant);
 	    List<Etudiant> etudiantsEncadres = new ArrayList<>();
 	    for (Encadrement encadrement : encadrements) {
 	        etudiantsEncadres.add(encadrement.getEtudiant());
@@ -56,8 +56,7 @@ public class EncadrementServiceImpl implements EncadrementService {
 
 	@Override
 	public void supprimerEncadrement(Encadrement encadrement) {
-		 encadrementRepository.delete(encadrement);
-		
+		encadrementRepository.delete(encadrement);
 	}
 
 	@Override
@@ -74,9 +73,9 @@ public class EncadrementServiceImpl implements EncadrementService {
 
 	@Override
 	public Etudiant getEtudiantById(Long idEtudiant) {
-		 if (etudiantRepository.findById(idEtudiant).isPresent())
-	            return etudiantRepository.findById(idEtudiant).get();
-	        else return null;
+		if (etudiantRepository.findById(idEtudiant).isPresent())
+			return etudiantRepository.findById(idEtudiant).get();
+		else return null;
 	}
 
 	@Override

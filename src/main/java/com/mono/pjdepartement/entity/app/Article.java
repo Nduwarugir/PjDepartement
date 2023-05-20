@@ -71,6 +71,7 @@ public class Article {
 				"idArticle=" + idArticle +
 				", theme='" + theme + '\'' +
 				", description='" + description + '\'' +
+				", link='" + link + '\'' +
 				", nameAuteur='" + nameAuteur + '\'' +
 				'}';
 	}

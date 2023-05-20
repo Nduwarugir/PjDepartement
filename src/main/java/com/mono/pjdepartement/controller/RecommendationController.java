@@ -2,7 +2,7 @@ package com.mono.pjdepartement.controller;
 
 import java.util.List;
 
-import com.mono.pjdepartement.entity.metier.Recommendation;
+import com.mono.pjdepartement.entity.app.Recommendation;
 import com.mono.pjdepartement.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

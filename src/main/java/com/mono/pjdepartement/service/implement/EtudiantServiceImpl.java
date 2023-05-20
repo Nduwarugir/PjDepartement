@@ -199,4 +199,5 @@ public class EtudiantServiceImpl implements EtudiantService {
             projetList = uses.get().getProjects();
         return projetList;
     }
+
 }

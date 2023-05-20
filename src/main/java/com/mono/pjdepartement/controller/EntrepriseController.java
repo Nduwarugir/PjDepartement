@@ -70,4 +70,5 @@ public class EntrepriseController {
     public List<Etudiant> readAllStagiaire(@PathVariable Long id){
         return entrepriseService.getAllStagiaires(id);
     }
+
 }

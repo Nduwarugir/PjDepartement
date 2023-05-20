@@ -2,7 +2,7 @@ package com.mono.pjdepartement.service;
 
 import java.util.List;
 
-import com.mono.pjdepartement.entity.metier.Encadrement;
+import com.mono.pjdepartement.entity.app.Encadrement;
 import com.mono.pjdepartement.entity.metier.Enseignant;
 import com.mono.pjdepartement.entity.metier.Etudiant;
 

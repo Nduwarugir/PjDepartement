@@ -35,6 +35,7 @@ public class StageController {
     public String deleteStage(@PathVariable Long id){
         return stageService.deleteStage(id);
     }
+
     @GetMapping("/poste/{poste}")
     public List<Stage> getStageByPoste(@PathVariable String poste) {
         return stageService.findByPoste(poste);
