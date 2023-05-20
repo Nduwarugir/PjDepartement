@@ -2,6 +2,12 @@ package com.mono.pjdepartement.entity.metier;
 
 import jakarta.persistence.*;
 
+
+/*
+ * C'est la super classe de tous les Utilisateurs.
+ * L'annotation Inheritance(strategy = InheritanceType.JOINED) permet de copier les
+ * attributs de la super classes User dans ses classes filles.
+ */
 @Table(name = "User")
 @Entity(name = "User")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -37,10 +43,6 @@ public abstract class User {
         this.mail = mail;
         this.password = password;
         this.photo = photo;
-    }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
     }
 
     public Long getIdUser() {

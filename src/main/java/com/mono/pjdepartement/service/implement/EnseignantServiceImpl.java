@@ -20,65 +20,75 @@ public class EnseignantServiceImpl implements EnseignantService {
     @Autowired
     EnseignantRepository enseignantRepository;
 
+    /*
+     * 1 - Si un champ obligatoire est vide, on renvoie un message de champ obligatoire vide.
+     * 2 - Sinon on crée  l'enseignant et on affiche le message de réussite
+     * 3 - On capture une quelconque exception et on l'affiche
+     */
     @Override
     public ResponseEntity<String> create(Enseignant enseignant) {
         try {
-            if (enseignant.getNom() == null)
+            if (enseignant.getNom() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre nom",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-            if (enseignant.getPrenom() == null)
+            if (enseignant.getPrenom() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre prénom",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-            if (enseignant.getMatricule() == null)
+            if (enseignant.getMatricule() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre matricule",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-            if (enseignant.getSpecialite() == null)
+            if (enseignant.getSpecialite() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre domain",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-            if (enseignant.getGrade() == null)
+            if (enseignant.getGrade() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre Grade",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-            if (enseignant.getMail() == null)
+            if (enseignant.getMail() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre mail",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-            if (enseignant.getPassword() == null)
+            if (enseignant.getPassword() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre mot de passe",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             
-            if (enseignant.getPhoto() == null)
+            if (enseignant.getPhoto() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre photo",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             
-            if (enseignant.getNumTel() == 0L)
+            if (enseignant.getNumTel() == 0L) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre numero de telephone",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             
-            Enseignant etmp = enseignantRepository.save(enseignant);
+            Enseignant etmp = enseignantRepository.save(enseignant); // 2
             return new ResponseEntity<>(
                     "Enregistrement reussi" + etmp,
                     HttpStatus.OK);
-        } catch (Exception e) {
+
+        } catch (Exception e) { // 3
             return new ResponseEntity<>(
                     "An exception has occured: "+e.getMessage(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    /*
+     * 1 - Si un champ obligatoire est mis à jour, on conserve la mise à jour.
+     * 2 - On sauvegarde toutes les modifications. Et on renvoie un message de réussite.
+     */
     @Override
     public ResponseEntity<String> update(Enseignant enseignant, Long idE) {
         Optional<Enseignant> uses = enseignantRepository.findById(idE);
@@ -87,34 +97,34 @@ public class EnseignantServiceImpl implements EnseignantService {
                     "Enterprise not found",
                     HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-        if (enseignant.getNom() != null || !uses.get().getNom().equals(enseignant.getNom()))
+        if (enseignant.getNom() != null || !uses.get().getNom().equals(enseignant.getNom())) // 1
             uses.get().setNom(enseignant.getNom());
         
-        if (enseignant.getPrenom() != null || !uses.get().getPrenom().equals(enseignant.getPrenom()))
+        if (enseignant.getPrenom() != null || !uses.get().getPrenom().equals(enseignant.getPrenom())) // 1
             uses.get().setPrenom(enseignant.getPrenom());
 
-        if (enseignant.getMatricule() != null || !uses.get().getMatricule().equals(enseignant.getMatricule()))
+        if (enseignant.getMatricule() != null || !uses.get().getMatricule().equals(enseignant.getMatricule())) // 1
             uses.get().setMatricule(enseignant.getMatricule());
 
-        if (enseignant.getSpecialite() != null || !uses.get().getSpecialite().equals(enseignant.getSpecialite()))
+        if (enseignant.getSpecialite() != null || !uses.get().getSpecialite().equals(enseignant.getSpecialite())) // 1
             uses.get().setSpecialite(enseignant.getSpecialite());
 
-        if (enseignant.getGrade() != null || !uses.get().getGrade().equals(enseignant.getGrade()))
+        if (enseignant.getGrade() != null || !uses.get().getGrade().equals(enseignant.getGrade())) // 1
             uses.get().setGrade(enseignant.getGrade());
 
-        if (enseignant.getMail() != null || !uses.get().getMail().equals(enseignant.getMail()))
+        if (enseignant.getMail() != null || !uses.get().getMail().equals(enseignant.getMail())) // 1
             uses.get().setMail(enseignant.getMail());
 
-        if (enseignant.getPassword() != null || !uses.get().getPassword().equals(enseignant.getPassword()))
+        if (enseignant.getPassword() != null || !uses.get().getPassword().equals(enseignant.getPassword())) // 1
             uses.get().setPassword(enseignant.getPassword());
 
-        if (enseignant.getPhoto() != null || !uses.get().getPhoto().equals(enseignant.getPhoto()))
+        if (enseignant.getPhoto() != null || !uses.get().getPhoto().equals(enseignant.getPhoto())) // 1
             uses.get().setPhoto(enseignant.getPhoto());
 
-        if (enseignant.getNumTel() != 0L || !(uses.get().getNumTel().equals(enseignant.getNumTel())))
+        if (enseignant.getNumTel() != 0L || !(uses.get().getNumTel().equals(enseignant.getNumTel()))) // 1
             uses.get().setNumTel(enseignant.getNumTel());
 
-        enseignantRepository.save(enseignant);
+        enseignantRepository.save(enseignant); // 2
         return new ResponseEntity<>(
                 "Modification reussie" ,
                 HttpStatus.OK);
@@ -138,23 +148,33 @@ public class EnseignantServiceImpl implements EnseignantService {
         return "l'enseignant a été supprimé";
     }
 
+    /*
+     * 1 - Si l'entreprise n'a pas été trouvé, on retourne un message d'erreur.
+     * 2 - On reccupère la liste des articles
+     * 3 - On ajoute l'article en question
+     * 4 - On set la liste d'articles de l'enseignant.
+     * 5 - On save les modif et on retourne un message de réussite.
+     */
     @Override
     public ResponseEntity<String> addArticle(Article article, Long id) {
         Optional<Enseignant> uses = enseignantRepository.findById(id);
-        if (uses.isEmpty())
+        if (uses.isEmpty()) // 1
             return new ResponseEntity<>(
                     "Enseignant not found",
                     HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-        List<Article> ens = uses.get().getArticles();
-        ens.add(article);
-        uses.get().setArticles(ens);
+        List<Article> ens = uses.get().getArticles(); // 2
+        ens.add(article); // 3
+        uses.get().setArticles(ens); // 4
 
-        enseignantRepository.save(uses.get());
+        enseignantRepository.save(uses.get()); // 5
         return new ResponseEntity<>(
                 "Ajout reussi: " + article,
                 HttpStatus.OK);
     }
 
+    /*
+     * On réccup la liste d'article d'un enseignant.
+     */
     @Override
     public List<Article> getAllArticles(Long id) {
         Optional<Enseignant> uses = enseignantRepository.findById(id);

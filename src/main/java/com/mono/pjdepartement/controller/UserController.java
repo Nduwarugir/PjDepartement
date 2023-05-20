@@ -34,7 +34,7 @@ public class UserController {
 		return userService.findByNom(name);
 	}
 
-	@GetMapping("/read/surname/{numTel}")
+	@GetMapping("/read/numtel/{numTel}")
 	public List<User> getUserByNumTel(@PathVariable Long numTel) {
 		return userService.findByNumTel(numTel);
 	}

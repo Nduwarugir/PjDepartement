@@ -9,6 +9,10 @@ import java.util.List;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long>{
+
+	/*
+	 * l'annotation @Query permet de spécifier le fonctionnement de la recherche pour pouvoir fonctionner avec les mots clés.
+	 */
 	@Query("select a from Article a where a.theme like %?1%")
 	List<Article> findByTheme(String theme);
 

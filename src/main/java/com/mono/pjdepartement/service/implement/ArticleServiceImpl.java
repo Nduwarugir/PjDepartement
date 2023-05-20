@@ -16,37 +16,42 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Autowired
 	ArticleRepository articleRepository;
-	
+
+	/*
+	 * 1 - Si un champ obligatoire est vide, on renvoie un message de champ obligatoire vide.
+	 * 2 - Sinon on crée l'article et on affiche le message de réussite
+	 * 3 - On capture une quelconque exception et on l'affiche
+	 */
 	@Override
 	public ResponseEntity<String> createArticle(Article article) {
 		try {
-            if (article.getTheme() == null) {
+            if (article.getTheme() == null) { // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer un thème",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
-            else if (article.getDescription() == null) {
+            else if (article.getDescription() == null) { // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer une description",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
-            else if (article.getLink() == null) {
+            else if (article.getLink() == null) { // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer un lien",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
 
-            else if (article.getNameAuteur() == null) {
+            else if (article.getNameAuteur() == null) { // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer un nom",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
 
-			Article atcl = articleRepository.save(article);
+			Article atcl = articleRepository.save(article); // 2
             return new ResponseEntity<>(
                     "Vous avez enregistré un nouveau article avec succès " + atcl,
                     HttpStatus.OK);
-        }catch(Exception e) {
+        }catch(Exception e) { // 3
             return new ResponseEntity<>(
                     "An exception has occured: "+e.getMessage(),
 					HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,6 +59,10 @@ public class ArticleServiceImpl implements ArticleService {
 
 	}
 
+	/*
+	 * 1 - Si un champ obligatoire est mis à jour, on conserve la mise à jour.
+	 * 2 - On sauvegarde toutes les modifications. Et on retourne un message de réussite.
+	 */
 	@Override
 	public ResponseEntity<String> updateArticle(Article article, Long id) {
 		Optional<Article> use = articleRepository.findById(id);
@@ -62,13 +71,14 @@ public class ArticleServiceImpl implements ArticleService {
                     "article not found",
                     HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
         }
-        if (article.getTheme() != null || !use.get().getTheme().equals(article.getTheme())) {
+        if (article.getTheme() != null || !use.get().getTheme().equals(article.getTheme())) { // 1
             use.get().setTheme(article.getTheme());
         }
-        if (article.getDescription() != null || !use.get().getDescription().equals(article.getDescription())) {
+        if (article.getDescription() != null || !use.get().getDescription().equals(article.getDescription())) { // 1
             use.get().setDescription(article.getDescription());
         }
-        articleRepository.saveAndFlush(use.get());
+
+        articleRepository.saveAndFlush(use.get()); // 2
         return new ResponseEntity<>(
                 "Modification reussie" ,
                 HttpStatus.OK);
