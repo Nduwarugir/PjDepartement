@@ -1,14 +1,14 @@
 package com.mono.pjdepartement.service.implement;
 
 
-import com.mono.pjdepartement.entity.metier.Enseignant;
-import com.mono.pjdepartement.entity.metier.User;
-import com.mono.pjdepartement.entity.repository.UserRepository;
-import com.mono.pjdepartement.service.UserService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.mono.pjdepartement.entity.metier.User;
+import com.mono.pjdepartement.entity.repository.UserRepository;
+import com.mono.pjdepartement.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -16,14 +16,18 @@ public class Admin {
     @Column
     private String password;
 
+    @Column
+    private String roles;
+
     public Admin() {
         super();
     }
 
-    public Admin(Long idAdmin, String email, String password) {
+    public Admin(Long idAdmin, String email, String password, String roles) {
         this.idAdmin = idAdmin;
         this.email = email;
         this.password = password;
+        this.roles = roles;
     }
 
     public void setIdAdmin(Long idAdmin) {
@@ -48,6 +52,14 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     @Override

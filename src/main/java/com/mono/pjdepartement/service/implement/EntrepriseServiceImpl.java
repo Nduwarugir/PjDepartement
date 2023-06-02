@@ -22,34 +22,39 @@ public class EntrepriseServiceImpl implements EntrepriseService {
     @Override
     public ResponseEntity<String> create(Entreprise entreprise) {
         try {
-            if (entreprise.getNom() == null) {
+            if (entreprise.getNom() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre nom",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
-            if (entreprise.getNumTel() == null) {
+
+            if (entreprise.getRoles() == null)
+                entreprise.setRoles("Entreprise");
+
+            if (entreprise.getNumTel() == null)
                 return new ResponseEntity<>(
-                        "Vous devez entrer Votre numero de téléphone",
-                        HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
-            if (entreprise.getMail() == null) {
-                return new ResponseEntity<>(
-                        "Vous devez entrer Votre mail",
-                        HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
-            if (entreprise.getPassword() == null) {
+                    "Vous devez entrer Votre numero de téléphone",
+                    HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+
+            if (entreprise.getMail() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre mail",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
+
+            if (entreprise.getPassword() == null)
+                return new ResponseEntity<>(
+                        "Vous devez entrer Votre mail",
+                        HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+
             if (entreprise.getContributeNumber() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer votre numéro de contribualble",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+
             if (entreprise.getLocation() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer votre Localisation",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+
             if (entreprise.getCreationDate() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer votre Date de creation",

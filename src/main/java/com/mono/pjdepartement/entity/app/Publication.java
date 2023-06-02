@@ -19,6 +19,9 @@ public class Publication {
     @Column
     private String image;
 
+    @Column
+    private String type;
+    
     public Publication() {
         super();
     }
@@ -60,6 +63,14 @@ public class Publication {
 
     public void setImage(String image) {
         this.image = image;
+    }
+        
+    public String getType() {
+    return type;
+    }
+        
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
