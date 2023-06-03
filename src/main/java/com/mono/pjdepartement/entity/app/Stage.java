@@ -1,11 +1,9 @@
 package com.mono.pjdepartement.entity.app;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.mono.pjdepartement.entity.metier.Entreprise;
+import com.mono.pjdepartement.entity.metier.Etudiant;
+
+import jakarta.persistence.*;
 
 @Entity(name="Stage")
 @Table(name="Stage")
@@ -30,6 +28,12 @@ public class Stage {
 	@Column(length = 50)
 	private String periode;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private Entreprise employeurs;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Etudiant employes;
+
 	public Stage() {
 		super();
 	}
@@ -41,6 +45,27 @@ public class Stage {
 		this.competencesAttendues = competencesAttendues;
 		this.image = image;
 		this.periode = periode;
+	}
+
+	public Stage(String poste, String description, String competencesAttendues, String image, String periode,
+			Entreprise employeurs) {
+		this.poste = poste;
+		this.description = description;
+		this.competencesAttendues = competencesAttendues;
+		this.image = image;
+		this.periode = periode;
+		this.employeurs = employeurs;
+	}
+
+	public Stage(String poste, String description, String competencesAttendues, String image, String periode,
+			Entreprise employeurs, Etudiant employes) {
+		this.poste = poste;
+		this.description = description;
+		this.competencesAttendues = competencesAttendues;
+		this.image = image;
+		this.periode = periode;
+		this.employeurs = employeurs;
+		this.employes = employes;
 	}
 
 	public long getIdStage() {
@@ -89,6 +114,22 @@ public class Stage {
 
 	public void setPeriode(String periode) {
 		this.periode = periode;
+	}
+
+	public Entreprise getEmployeurs() {
+		return employeurs;
+	}
+
+	public void setEmployeurs(Entreprise employeurs) {
+		this.employeurs = employeurs;
+	}
+
+	public Etudiant getEmployes() {
+		return employes;
+	}
+
+	public void setEmployes(Etudiant employes) {
+		this.employes = employes;
 	}
 
 	@Override

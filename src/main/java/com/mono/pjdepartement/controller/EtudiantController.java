@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/Etudiant")
 public class EtudiantController {
@@ -62,22 +63,22 @@ public class EtudiantController {
 		return etudiantService.findByxpLanguage(xpL);
 	}
 
-    @PutMapping(path = "/add/article/{id}")
+    @PutMapping(path = "/add/{id}/article")
     public ResponseEntity<String> addArticle(@RequestBody Article article, @PathVariable Long id){
         return etudiantService.addArticle(article, id);
     }
 
-    @GetMapping(path = "/read/articles/{id}")
+    @GetMapping(path = "/read/{id}/articles")
     public List<Article> readAllArticle(@PathVariable Long id){
         return etudiantService.getAllArticles(id);
     }
 
-    @PutMapping(path = "/add/project/{id}")
+    @PutMapping(path = "/add/{id}/project")
     public ResponseEntity<String> addProject(@RequestBody Projet projet, @PathVariable Long id){
         return etudiantService.addProjet(projet, id);
     }
 
-    @GetMapping(path = "/read/project/{id}")
+    @GetMapping(path = "/read/{id}/project")
     public List<Projet> readAllProject(@PathVariable Long id){
         return etudiantService.getAllProjects(id);
     }
