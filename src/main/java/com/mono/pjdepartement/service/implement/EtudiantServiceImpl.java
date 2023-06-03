@@ -23,41 +23,44 @@ public class EtudiantServiceImpl implements EtudiantService {
     @Override
     public ResponseEntity<String> create(Etudiant etudiant) {
         try {
-            if (etudiant.getNom() == null) {
+            if (etudiant.getNom() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre nom",
                         HttpStatus.INTERNAL_SERVER_ERROR); //renvoie une erreur 500 si le nom est vide
-            }
-            if (etudiant.getNumTel() == null) {
+
+            if (etudiant.getNumTel() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre numero de téléphone",
                         HttpStatus.INTERNAL_SERVER_ERROR); //renvoie une erreur 500 si le num tel est vide
-            }
-            if (etudiant.getMail() == null) {
+
+            if (etudiant.getRoles() == null)
+                etudiant.setRoles("Etudiant");
+
+            if (etudiant.getMail() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre mail",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500 si le mail est vide
-            }
-            if (etudiant.getPassword() == null) {
+
+            if (etudiant.getPassword() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre mail",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500 ainsi de suite
-            }
-            else if (etudiant.getMatricule() == null) {
+
+            if (etudiant.getMatricule() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer votre matricule",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
-            else if (etudiant.getPrenom() == null) {
+
+            if (etudiant.getPrenom() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer Votre Prénom",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
-            else if (etudiant.getNiveau() == null) {
+
+            if (etudiant.getNiveau() == null)
                 return new ResponseEntity<>(
                         "Vous devez entrer votre niveau",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            }
+
             etudiantRepository.save(etudiant);
             return new ResponseEntity<>(
                     "Vous avez été enregistré avec succès " + etudiantRepository.save(etudiant),

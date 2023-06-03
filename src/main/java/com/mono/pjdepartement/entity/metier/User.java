@@ -32,17 +32,21 @@ public abstract class User {
     @Column(length = 100)
     private String photo;
 
+    @Column(length = 100)
+    private String roles;
+
     public User() {
         super();
     }
 
-    public User(Long idUser, String nom, Long numTel, String mail, String password, String photo) {
+    public User(Long idUser, String nom, Long numTel, String mail, String password, String photo, String roles) {
         this.idUser = idUser;
         this.nom = nom;
         this.numTel = numTel;
         this.mail = mail;
         this.password = password;
         this.photo = photo;
+        this.roles = roles;
     }
 
     public Long getIdUser() {
@@ -87,5 +91,13 @@ public abstract class User {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

@@ -35,7 +35,7 @@ public class Entreprise extends User {
     }
 
     public Entreprise(Long idUser, String nom, Long numTel, String mail, String password, String photo, Long contributeNumber, String location, String webSite, Date creationDate) {
-        super(idUser, nom, numTel, mail, password, photo);
+        super(idUser, nom, numTel, mail, password, photo, "Entreprise");
         this.contributeNumber = contributeNumber;
         this.location = location;
         this.webSite = webSite;

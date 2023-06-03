@@ -33,6 +33,9 @@ public class EnseignantServiceImpl implements EnseignantService {
                         "Vous devez entrer votre nom",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
+            if (enseignant.getRoles() == null) // 1
+                enseignant.setRoles("Enseignant");
+
             if (enseignant.getPrenom() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre prénom",

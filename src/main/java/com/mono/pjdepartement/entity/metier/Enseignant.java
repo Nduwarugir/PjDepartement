@@ -44,7 +44,7 @@ public class Enseignant extends User implements Worker {
     }
 
     public Enseignant(Long idUser, String nom, Long numTel, String mail, String password, String photo, String matricule, String prenom, String grade, String specialite, String competences) {
-        super(idUser, nom, numTel, mail, password, photo);
+        super(idUser, nom, numTel, mail, password, photo, "Enseignant");
         this.matricule = matricule;
         this.prenom = prenom;
         this.grade = grade;
