@@ -112,4 +112,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.findByNameAuteur(nameAuteur);
 	}
 
+	@Override
+	public List<Article> findByDescription(String description) {
+		return articleRepository.findByDescription(description);
+	}
+
 }

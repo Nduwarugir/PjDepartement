@@ -18,4 +18,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long>{
 
 	@Query("select a from Article a where a.nameAuteur like %?1%")
 	List<Article> findByNameAuteur(String nameAuteur);
+
+	@Query("select a from Article a where a.description like %?1%")
+	List<Article> findByDescription(String description);
 }

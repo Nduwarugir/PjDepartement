@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.mono.pjdepartement.entity.app.Emploi;
 import com.mono.pjdepartement.entity.repository.EmploiRepository;
 import com.mono.pjdepartement.service.EmploiService;
+import com.mono.pjdepartement.service.EntrepriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,11 @@ public class EmploiServiceImpl implements EmploiService {
 	
 	@Autowired
     EmploiRepository emploiRepository;
+	@Autowired
+	EntrepriseService entrepriseService;
 
 	@Override
-	public ResponseEntity<String> createOffreEmploi(Emploi emploie) {
+	public ResponseEntity<String> create(Emploi emploie, Long idE) {
 		try {
             if (emploie.getPoste() == null) {
                 return new ResponseEntity<>(
@@ -30,11 +33,19 @@ public class EmploiServiceImpl implements EmploiService {
                         "Vous devez entrer une Description",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
-            else if (emploie.getDomaineRequis() == null) {
+            else if (emploie.getSecteur() == null) {
                 return new ResponseEntity<>(
-                        "Vous devez entrer un Domaine",
+                        "Vous devez entrer un Secteur",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
+            else if (emploie.getPeriode() == null) {
+                return new ResponseEntity<>(
+                        "Vous devez entrer un Periode",
+                        HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+            }
+			else if (idE != null) {
+				emploie.setEmployeur(entrepriseService.getEnterprise(idE));
+			}
             emploiRepository.save(emploie);
             return new ResponseEntity<>(
                     "L'offre d'emploie a été enregistré avec succès" + emploiRepository.save(emploie),
@@ -47,7 +58,7 @@ public class EmploiServiceImpl implements EmploiService {
 	}
 
 	@Override
-	public ResponseEntity<String> updateEmploi(Emploi emploie, Long id) {
+	public ResponseEntity<String> update(Emploi emploie, Long id) {
 		Optional<Emploi> use = emploiRepository.findById(id);
         if(use.isEmpty()) {
             return new ResponseEntity<>(
@@ -58,7 +69,7 @@ public class EmploiServiceImpl implements EmploiService {
             use.get().setPoste(emploie.getPoste());
         }
         if (emploie.getDescription() != null || !use.get().getDescription().equals(emploie.getDescription())) {
-            use.get().setDomaineRequis(emploie.getDescription());
+            use.get().setSecteur(emploie.getDescription());
         }
         
         emploiRepository.save(use.get());
@@ -80,18 +91,34 @@ public class EmploiServiceImpl implements EmploiService {
 	}
 
 	@Override
-	public String deleteEmploi(Long id) {
+	public String delete(Long id) {
 		emploiRepository.deleteById(id);
-        return "l'offre d'emploie a été supprimé";
+        return "l'emploi a été supprimé";
 	}
 
 	@Override
-	public List<Emploi> findByPoste(String poste) {
-		return emploiRepository.findByPoste(poste);//recherche d'une offre d'emploie par le poste
+	public List<Emploi> getByPeriode(String periode) {
+		return emploiRepository.findByPeriode(periode);
 	}
+
 	@Override
-	public Emploi findByDomainRequis(String domaineRequis) {
-		return emploiRepository.findByDomaineRequis(domaineRequis);
+	public List<Emploi> getByCompetences(String competences) {
+		return emploiRepository.findByCompetences(competences);
 	}
-     
+
+	@Override
+	public List<Emploi> getByDescription(String description) {
+		return emploiRepository.findByDescription(description);
+	}
+
+	@Override
+	public List<Emploi> getByPoste(String poste) {
+		return emploiRepository.findByPoste(poste);
+	}
+
+	@Override
+	public List<Emploi> getBySecteur(String secteur) {
+		return emploiRepository.findBySecteur(secteur);
+	}
+
 }

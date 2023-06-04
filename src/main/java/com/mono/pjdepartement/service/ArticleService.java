@@ -13,4 +13,5 @@ public interface ArticleService {
 	String deleteArticle(Long id);
 	List<Article> findByTheme(String theme);
 	List<Article> findByNameAuteur(String nameAuteur);
+    List<Article> findByDescription(String description);
 }

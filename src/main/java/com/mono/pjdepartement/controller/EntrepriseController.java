@@ -52,22 +52,22 @@ public class EntrepriseController {
         return entrepriseService.findByLocation(locality);
     }
 
-    @PutMapping(path = "/add/parraine/{id}")
+    @PutMapping(path = "/add/{id}/parraine")
     public ResponseEntity<String> addParraine(@RequestBody Etudiant etudiant, @PathVariable Long id){
         return entrepriseService.addParraine(etudiant, id);
     }
 
-    @GetMapping(path = "/read/parraine/{id}")
+    @GetMapping(path = "/read/{id}/parraine")
     public List<Etudiant> readAllParraine(@PathVariable Long id){
         return entrepriseService.getAllParraines(id);
     }
 
-    @PutMapping(path = "/add/stagiaire/{id}")
+    @PutMapping(path = "/add/{id}/stagiaire")
     public ResponseEntity<String> addStagiaire(@RequestBody Etudiant etudiant, @PathVariable Long id){
         return entrepriseService.addStagiaire(etudiant, id);
     }
 
-    @GetMapping(path = "/read/stagiaire/{id}")
+    @GetMapping(path = "/read/{id}/stagiaire")
     public List<Etudiant> readAllStagiaire(@PathVariable Long id){
         return entrepriseService.getAllStagiaires(id);
     }

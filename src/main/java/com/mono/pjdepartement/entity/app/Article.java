@@ -2,6 +2,7 @@ package com.mono.pjdepartement.entity.app;
 
 import jakarta.persistence.*;
 
+
 @Entity(name = "Article")
 @Table(name = "Article")
 public class Article {
@@ -21,7 +22,7 @@ public class Article {
 
 	@Column(length = 100)
 	private String nameAuteur;
-	
+
 	public Article() {
 		super();
 	}

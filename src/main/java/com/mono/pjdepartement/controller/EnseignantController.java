@@ -6,7 +6,6 @@ import com.mono.pjdepartement.entity.metier.Enseignant;
 import com.mono.pjdepartement.service.EnseignantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,13 +18,14 @@ public class EnseignantController {
     @Autowired
     EnseignantService enseignantService;
 
-    //Page d'affichage de tous les enseignants
-    @GetMapping("/")
-    public String home(Model model) {
-        List<Enseignant> listEnseignant = enseignantService.getAll();
-        model.addAttribute("enseignants", listEnseignant);
-        return "accueil";
-    }
+//    //Page d'affichage de tous les enseignants
+//    @GetMapping("/")
+//    public String home(Model model) {
+//        List<Enseignant> listEnseignant = enseignantService.getAll();
+//        model.addAttribute("enseignants", listEnseignant);
+//        return "accueil";
+//    }
+
     @PostMapping(path = "/create")
     public ResponseEntity<String> createEnseignant(@RequestBody Enseignant enseignant){
         return enseignantService.create(enseignant);
@@ -51,22 +51,22 @@ public class EnseignantController {
         return enseignantService.getEnseignant(id);
     }
 
-    @PutMapping(path = "/add/article/{id}")
+    @PutMapping(path = "/add/{id}/article")
     public ResponseEntity<String> addArticle(@RequestBody Article article, @PathVariable Long id){
         return enseignantService.addArticle(article, id);
     }
 
-    @GetMapping(path = "/read/articles/{id}")
+    @GetMapping(path = "/read/{id}/articles")
     public List<Article> readAllArticle(@PathVariable Long id){
         return enseignantService.getAllArticles(id);
     }
 
-    @PutMapping(path = "/add/project/{id}")
+    @PutMapping(path = "/add/{id}/project")
     public ResponseEntity<String> addProject(@RequestBody Projet projet, @PathVariable Long id){
         return enseignantService.addProjet(projet, id);
     }
 
-    @GetMapping(path = "/read/project/{id}")
+    @GetMapping(path = "/read/{id}/project")
     public List<Projet> readAllProject(@PathVariable Long id){
         return enseignantService.getAllProjects(id);
     }

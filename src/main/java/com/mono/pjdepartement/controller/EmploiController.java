@@ -16,19 +16,19 @@ public class EmploiController {
 	@Autowired
     EmploiService offreEmploi;
 	
-	@PostMapping(path = "/create")
-    public ResponseEntity<String> createEmploi(@RequestBody Emploi emploi){
-        return offreEmploi.createOffreEmploi(emploi);
+	@PostMapping(path = "/create/{idE}")
+    public ResponseEntity<String> createEmploi(@RequestBody Emploi emploi, @PathVariable Long idE){
+        return offreEmploi.create(emploi, idE);
     }
 
     @PutMapping(path = "/update/{id}")
     public ResponseEntity<String> updateEmploi(@RequestBody Emploi emploi, @PathVariable Long id){
-        return offreEmploi.updateEmploi(emploi, id);
+        return offreEmploi.update(emploi, id);
     }
 
     @DeleteMapping(path = "/delete/{id}")
     public String deleteEmploi(@PathVariable Long id){
-        return offreEmploi.deleteEmploi(id);
+        return offreEmploi.delete(id);
     }
 
     @GetMapping(path = "/read")
@@ -36,8 +36,33 @@ public class EmploiController {
         return offreEmploi.getAll();
     }
 
+    @GetMapping("/read/{id}")
+    public Emploi getEmploi(@PathVariable Long id) {
+        return offreEmploi.getEmploi(id);
+    }
+
     @GetMapping("/read/poste/{poste}")
     public List<Emploi> getEmploiByPoste(@PathVariable String poste) {
-        return offreEmploi.findByPoste(poste);
+        return offreEmploi.getByPoste(poste);
+    }
+
+    @GetMapping("/read/period/{period}")
+    public List<Emploi> getEmploiByPeriod(@PathVariable String period) {
+        return offreEmploi.getByPeriode(period);
+    }
+
+    @GetMapping("/read/comp/{comp}")
+    public List<Emploi> getEmploiByCompetences(@PathVariable String comp) {
+        return offreEmploi.getByCompetences(comp);
+    }
+
+    @GetMapping("/read/desc/{desc}")
+    public List<Emploi> getEmploiByDescription(@PathVariable String desc) {
+        return offreEmploi.getByDescription(desc);
+    }
+
+    @GetMapping("/read/secteur/{secteur}")
+    public List<Emploi> getEmploiBySecteur(@PathVariable String secteur) {
+        return offreEmploi.getBySecteur(secteur);
     }
 }
