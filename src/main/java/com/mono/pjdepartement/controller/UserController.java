@@ -32,12 +32,17 @@ public class UserController {
 
 	@GetMapping("/read/name/{name}")
 	public List<User> getEtudiantByNom(@PathVariable String name) {
-		return userService.findByNom(name);
+		return userService.getByNom(name);
 	}
 
 	@GetMapping("/read/numtel/{numTel}")
 	public List<User> getUserByNumTel(@PathVariable Long numTel) {
-		return userService.findByNumTel(numTel);
+		return userService.getByNumTel(numTel);
+	}
+
+	@GetMapping("/read/mail/{mail}")
+	public List<User> getEtudiantByMail(@PathVariable String mail) {
+		return userService.getByMail(mail);
 	}
 
 }

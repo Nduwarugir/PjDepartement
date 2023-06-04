@@ -8,6 +8,7 @@ public interface UserService {
 	List<User> getAll();
 	User getUser(Long id);
 	String delete(Long id);
-	List<User> findByNom(String nom);
-	List<User> findByNumTel(Long numTel);
+	List<User> getByNom(String nom);
+	List<User> getByNumTel(Long numTel);
+	List<User> getByMail(String mail);
 }

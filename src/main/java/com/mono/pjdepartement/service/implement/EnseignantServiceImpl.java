@@ -49,7 +49,7 @@ public class EnseignantServiceImpl implements EnseignantService {
 
             if (enseignant.getSpecialite() == null) // 1
                 return new ResponseEntity<>(
-                        "Vous devez entrer votre domain",
+                        "Vous devez entrer votre spécialité",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
             if (enseignant.getGrade() == null) // 1
@@ -65,11 +65,6 @@ public class EnseignantServiceImpl implements EnseignantService {
             if (enseignant.getPassword() == null) // 1
                 return new ResponseEntity<>(
                         "Vous devez entrer votre mot de passe",
-                        HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-            
-            if (enseignant.getPhoto() == null) // 1
-                return new ResponseEntity<>(
-                        "Vous devez entrer votre photo",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             
             if (enseignant.getNumTel() == 0L) // 1

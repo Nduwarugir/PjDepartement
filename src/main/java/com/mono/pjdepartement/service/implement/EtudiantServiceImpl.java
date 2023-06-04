@@ -43,7 +43,7 @@ public class EtudiantServiceImpl implements EtudiantService {
 
             if (etudiant.getPassword() == null)
                 return new ResponseEntity<>(
-                        "Vous devez entrer Votre mail",
+                        "Vous devez entrer Votre Password",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500 ainsi de suite
 
             if (etudiant.getMatricule() == null)
