@@ -3,7 +3,7 @@ INSERT INTO article (id_article, description, link, name_auteur, theme) VALUES
                                                                                         (2, 'This article is the first step for your personal development', 'junior.link-article.com', 'Link\'s', 'How to be a junior developer'),
                                                                                         (3, 'This article will help you to be a front-end developer.', 'front-end.link-article.com', 'Link\'s', 'How to be a front-end developer');
 
-INSERT INTO emploi (id_emploi, description, domaine_requis, poste) VALUES
+INSERT INTO emploi (secteur, id_offre, employe_id_user, employeur_id_user) VALUES
     (1, 'This is the description', 'This is an example of description', 'Chef projet');
 
 INSERT INTO entreprise (contribute_number, creation_date, location, web_site, id_user) VALUES
@@ -29,7 +29,7 @@ INSERT INTO projet (id_projet, description, theme) VALUES
                                                                (2, 'ETL.', 'INF3086'),
                                                                (3, 'ELT.', 'INF3086');
 
-INSERT INTO stage (id_stage, competences_attendues, description, image, periode, poste) VALUES
+INSERT INTO stage (id_offre, employe_id_user, employeur_id_user ) VALUES
     (1, 'Java, Spring-boot, SCRUM Methodology', 'Nous recherchons un scrum master', '@Stage001', '10/05 - 10/08', 'Chef de projet');
 
 INSERT INTO user (id_user, mail, nom, num_tel, password, photo) VALUES
