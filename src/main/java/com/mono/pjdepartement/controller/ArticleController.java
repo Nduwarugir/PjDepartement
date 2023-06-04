@@ -36,6 +36,11 @@ public class ArticleController {
         return articleService.getAll();
     }
 
+    @GetMapping(path = "/read/{id}")
+    public Article readArticle(@PathVariable Long id){
+        return articleService.getArticle(id);
+    }
+
     @GetMapping("/read/name/{name}")
     public List<Article> getArticleByAuteur(@PathVariable String name) {
         return articleService.findByNameAuteur(name);
@@ -44,6 +49,11 @@ public class ArticleController {
     @GetMapping("/read/theme/{theme}")
     public List<Article> getArticleBytheme(@PathVariable String theme) {
         return articleService.findByTheme(theme);
+    }
+
+    @GetMapping("/read/desc/{desc}")
+    public List<Article> getArticleByDescription(@PathVariable String desc) {
+        return articleService.findByDescription(desc);
     }
 
 }

@@ -6,12 +6,14 @@ import com.mono.pjdepartement.entity.app.Emploi;
 import org.springframework.http.ResponseEntity;
 
 public interface EmploiService {
-
-	    ResponseEntity<String> createOffreEmploi(Emploi emploie);
-	    ResponseEntity<String> updateEmploi(Emploi emploie, Long id);
-	    List<Emploi> getAll();
-	    Emploi getEmploi(Long id);
-	    String deleteEmploi(Long id);
-		List<Emploi> findByPoste(String poste);
-		Emploi findByDomainRequis(String domaineRequis);
+	ResponseEntity<String> create(Emploi emploie, Long idE);
+	ResponseEntity<String> update(Emploi emploie, Long id);
+	List<Emploi> getAll();
+	Emploi getEmploi(Long id);
+	String delete(Long id);
+	List<Emploi> getByPeriode(String periode);
+	List<Emploi> getByCompetences(String competences);
+	List<Emploi> getByDescription(String description);
+	List<Emploi> getByPoste(String poste);
+	List<Emploi> getBySecteur(String secteur);
 }

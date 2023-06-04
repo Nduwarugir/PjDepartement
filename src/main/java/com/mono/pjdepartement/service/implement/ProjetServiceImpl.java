@@ -30,6 +30,11 @@ public class ProjetServiceImpl implements ProjetService {
                         "Vous devez entrer une description",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
             }
+            else if (projet.getStatus() == null) {
+                return new ResponseEntity<>(
+                        "Vous devez entrer une status",
+                        HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+            }
             projetRepository.save(projet);
             return new ResponseEntity<>(
                     "Vous avez enregistré un nouveau projet avec succès " + projetRepository.save(projet),
@@ -52,6 +57,9 @@ public class ProjetServiceImpl implements ProjetService {
         }
         if (projet.getTheme() != null || !use.get().getTheme().equals(projet.getTheme())) {
             use.get().setTheme(projet.getTheme());
+        }
+        if (projet.getStatus() != null || !use.get().getStatus().equals(projet.getStatus())) {
+            use.get().setStatus(projet.getStatus());
         }
         if (projet.getDescription() != null || !use.get().getDescription().equals(projet.getDescription())) {
             use.get().setDescription(projet.getDescription());

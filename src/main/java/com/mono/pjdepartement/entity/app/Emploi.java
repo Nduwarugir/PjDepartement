@@ -1,66 +1,69 @@
 package com.mono.pjdepartement.entity.app;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.mono.pjdepartement.entity.metier.Entreprise;
+import com.mono.pjdepartement.entity.metier.Etudiant;
+import jakarta.persistence.*;
 
 @Entity(name="Emploi")
 @Table(name="Emploi")
-public class Emploi {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idEmploi;
+public class Emploi extends Offre {
 
 	@Column(length = 50)
-	private String poste;
+	private String secteur;
 
-	@Column(length = 100)
-	private String description;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Entreprise employeur;
 
-	@Column(length = 50)
-	private String domaineRequis;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Etudiant employe;
 
 	public Emploi() {
 		super();
 	}
-	/*L'objet offre d'emploie*/
-	public Emploi(String poste, String description, String domaineRequis) {
-		super();
-		this.poste = poste;
-		this.description = description;
-		this.domaineRequis = domaineRequis;
+
+	public Emploi(String poste, String description, String periode, String competences, Boolean etat, String secteur, Entreprise employeur) {
+		super(poste, description, periode, competences, etat);
+		this.secteur = secteur;
+		this.employeur = employeur;
 	}
-	public long getIdEmploi() {
-		return idEmploi;
+
+	public Emploi(String poste, String description, String periode, String competences, Boolean etat, String secteur, Entreprise employeur, Etudiant employe) {
+		super(poste, description, periode, competences, etat);
+		this.secteur = secteur;
+		this.employeur = employeur;
+		this.employe = employe;
 	}
-	public void setIdEmploi(long idEmploi) {
-		this.idEmploi = idEmploi;
+
+	public String getSecteur() {
+		return secteur;
 	}
-	public String getPoste() {
-		return poste;
+
+	public void setSecteur(String secteur) {
+		this.secteur = secteur;
 	}
-	public void setPoste(String poste) {
-		this.poste = poste;
+
+	public Entreprise getEmployeur() {
+		return employeur;
 	}
-	public String getDescription() {
-		return description;
+
+	public void setEmployeur(Entreprise employeur) {
+		this.employeur = employeur;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public Etudiant getEmploye() {
+		return employe;
 	}
-	public String getDomaineRequis() {
-		return domaineRequis;
+
+	public void setEmploye(Etudiant employe) {
+		this.employe = employe;
 	}
-	public void setDomaineRequis(String domaineRequis) {
-		this.domaineRequis = domaineRequis;
-	}
+
 	@Override
 	public String toString() {
-		return "Emploi [idEmploi=" + idEmploi + ", poste=" + poste + ", description=" + description
-				+ ", domaineRequis=" + domaineRequis + "]";
+		return "Emploi{" +
+				"secteur='" + secteur + '\'' +
+				", employeur=" + employeur +
+				", employe=" + employe +
+				"} " + super.toString();
 	}
 }

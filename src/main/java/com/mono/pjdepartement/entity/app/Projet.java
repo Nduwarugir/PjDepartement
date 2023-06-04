@@ -15,23 +15,23 @@ public class Projet {
 
 	@Column(length = 200)
 	private String description;
-	 
+
+	@Column(length = 200)
+	private String status;
+
 	public Projet() {
 		 super();
 	 }
 
-	public Projet(String theme, String description) {
+	public Projet(String theme, String description, String status) {
 		super();
 		this.theme = theme;
 		this.description = description;
+		this.status = status;
 	}
 
 	public long getIdProjet() {
 		return idProjet;
-	}
-
-	public void setIdProjet(long idProjet) {
-		this.idProjet = idProjet;
 	}
 
 	public String getTheme() {
@@ -50,12 +50,21 @@ public class Projet {
 		this.description = description;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Projet{" +
 				"idProjet=" + idProjet +
 				", theme='" + theme + '\'' +
 				", description='" + description + '\'' +
+				", status='" + status + '\'' +
 				'}';
 	}
 }

@@ -17,14 +17,14 @@ public class StageController {
 	@Autowired
     StageService stageService;
 	
-	@PostMapping(path = "/create")
-    public ResponseEntity<String> creatStage(@RequestBody Stage stage){
-        return stageService.createStage(stage);
+	@PostMapping(path = "/create/{idE}")
+    public ResponseEntity<String> creatStage(@RequestBody Stage stage, @PathVariable Long idE){
+        return stageService.create(stage, idE);
     }
 
     @PutMapping(path = "/update/{id}")
     public ResponseEntity<String> updateStage(@RequestBody Stage stage, @PathVariable Long id){
-        return stageService.updateStage(stage, id);
+        return stageService.update(stage, id);
     }
 
     @GetMapping(path = "/read")
@@ -32,13 +32,33 @@ public class StageController {
         return stageService.getAll();
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    public String deleteStage(@PathVariable Long id){
-        return stageService.deleteStage(id);
+    @GetMapping(path = "/read/{id}")
+    public Stage readStage(@PathVariable Long id){
+        return stageService.getStage(id);
     }
 
-    @GetMapping("/poste/{poste}")
+    @DeleteMapping(path = "/delete/{id}")
+    public String deleteStage(@PathVariable Long id){
+        return stageService.delete(id);
+    }
+
+    @GetMapping("/read/poste/{poste}")
     public List<Stage> getStageByPoste(@PathVariable String poste) {
-        return stageService.findByPoste(poste);
+        return stageService.getByPoste(poste);
+    }
+
+    @GetMapping("/read/desc/{desc}")
+    public List<Stage> getStageByDescription(@PathVariable String desc) {
+        return stageService.getByDescription(desc);
+    }
+
+    @GetMapping("/read/comp/{comp}")
+    public List<Stage> getStageByCompetences(@PathVariable String comp) {
+        return stageService.getByCompetences(comp);
+    }
+
+    @GetMapping("/read/period/{period}")
+    public List<Stage> getStageByPeriode(@PathVariable String period) {
+        return stageService.getByPeriode(period);
     }
 }
