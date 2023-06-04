@@ -47,8 +47,38 @@ public class EnseignantController {
     }
 
     @GetMapping(path = "/read/{id}")
-    public Enseignant readenseignant(@PathVariable Long id){
+    public Enseignant readEnseignant(@PathVariable Long id){
         return enseignantService.getEnseignant(id);
+    }
+
+    @GetMapping("/read/name/{name}")
+    public List<Enseignant> getEnseignantByNom(@PathVariable String name) {
+        return enseignantService.getByNom(name);
+    }
+
+    @GetMapping("/read/surname/{surname}")
+    public List<Enseignant> getEnseignantByPrenom(@PathVariable String surname) {
+        return enseignantService.getByPrenom(surname);
+    }
+
+    @GetMapping("/read/matricule/{mat}")
+    public Enseignant getEnseignantByMatricule(@PathVariable String mat) {
+        return enseignantService.getByMatricule(mat);
+    }
+
+    @GetMapping("/read/comp/{comp}")
+    public List<Enseignant> getEnseignantByxpLanguage(@PathVariable String comp) {
+        return enseignantService.getByCompetences(comp);
+    }
+
+    @GetMapping("/read/special/{special}")
+    public List<Enseignant> getEnseignantByLevel(@PathVariable String special) {
+        return enseignantService.getBySpeciality(special);
+    }
+
+    @PutMapping(path = "/add/{id}")
+    public ResponseEntity<String> addCompetence(@PathVariable Long id, @RequestBody String comp) {
+        return enseignantService.addCompetence(id, comp);
     }
 
     @PutMapping(path = "/add/{id}/article")

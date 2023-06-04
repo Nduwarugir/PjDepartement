@@ -1,18 +1,19 @@
 package com.mono.pjdepartement.service.implement;
 
 
-import com.mono.pjdepartement.entity.app.Article;
-import com.mono.pjdepartement.entity.app.Projet;
-import com.mono.pjdepartement.entity.metier.Enseignant;
-import com.mono.pjdepartement.entity.repository.EnseignantRepository;
-import com.mono.pjdepartement.service.EnseignantService;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.mono.pjdepartement.entity.app.Article;
+import com.mono.pjdepartement.entity.app.Projet;
+import com.mono.pjdepartement.entity.metier.Enseignant;
+import com.mono.pjdepartement.entity.repository.EnseignantRepository;
+import com.mono.pjdepartement.service.EnseignantService;
 
 @Service
 public class EnseignantServiceImpl implements EnseignantService {
@@ -151,6 +152,31 @@ public class EnseignantServiceImpl implements EnseignantService {
         return "l'enseignant a été supprimé";
     }
 
+    @Override
+    public List<Enseignant> getByNom(String nom) {
+        return enseignantRepository.findByNom(nom);
+    }
+
+    @Override
+    public List<Enseignant> getByPrenom(String prenom) {
+        return enseignantRepository.findByPrenom(prenom);
+    }
+
+    @Override
+    public Enseignant getByMatricule(String matricule) {
+        return enseignantRepository.findByMatricule(matricule);
+    }
+
+    @Override
+    public List<Enseignant> getBySpeciality(String specialite) {
+        return enseignantRepository.findBySpecialite(specialite);
+    }
+
+    @Override
+    public List<Enseignant> getByCompetences(String competences) {
+        return enseignantRepository.findByCompetences(competences);
+    }
+
     /*
      * 1 - Si l'entreprise n'a pas été trouvé, on retourne un message d'erreur.
      * 2 - On reccupère la liste des articles
@@ -211,5 +237,22 @@ public class EnseignantServiceImpl implements EnseignantService {
         if (uses.isPresent())
             projetList = uses.get().getProjects();
         return projetList;
+    }
+
+    @Override
+    public ResponseEntity<String> addCompetence(Long id, String comp) {
+        Optional<Enseignant> uses = enseignantRepository.findById(id);
+        if (uses.isEmpty())
+            return new ResponseEntity<>(
+                    "Etudiant not found",
+                    HttpStatus.INTERNAL_SERVER_ERROR); //renvoie une erreur 500
+        String competences = uses.get().getCompetences();
+        competences += "; "+comp;
+        uses.get().setCompetences(competences);
+
+        enseignantRepository.save(uses.get());
+        return new ResponseEntity<>(
+                "Ajout reussi: " + competences,
+                HttpStatus.OK);
     }
 }
