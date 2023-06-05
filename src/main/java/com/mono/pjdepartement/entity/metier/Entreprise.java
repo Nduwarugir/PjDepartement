@@ -29,7 +29,6 @@ public class Entreprise extends User {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Etudiant> stagiaires = new ArrayList<>();
 
-
     public Entreprise() {
         super();
     }
