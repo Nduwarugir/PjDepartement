@@ -43,7 +43,7 @@ public class EtudiantServiceImpl implements EtudiantService {
 
             if (etudiant.getPassword() == null)
                 return new ResponseEntity<>(
-                        "Vous devez entrer Votre mail",
+                        "Vous devez entrer Votre Password",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500 ainsi de suite
 
             if (etudiant.getMatricule() == null)
@@ -147,8 +147,13 @@ public class EtudiantServiceImpl implements EtudiantService {
 	}
 
     @Override
-	public List<Etudiant> findByxpLanguage(String xp) {
-		return etudiantRepository.findByCompetence(xp);
+	public List<Etudiant> findByCompetence(String competence) {
+		return etudiantRepository.findByCompetence(competence);
+	}
+
+    @Override
+	public List<Etudiant> findByNiveau(String niveau) {
+		return etudiantRepository.findByNiveau(niveau);
 	}
 
     @Override
@@ -201,6 +206,23 @@ public class EtudiantServiceImpl implements EtudiantService {
         if (uses.isPresent())
             projetList = uses.get().getProjects();
         return projetList;
+    }
+
+    @Override
+    public ResponseEntity<String> addCompetence(Long id, String comp) {
+        Optional<Etudiant> uses = etudiantRepository.findById(id);
+        if (uses.isEmpty())
+            return new ResponseEntity<>(
+                    "Etudiant not found",
+                    HttpStatus.INTERNAL_SERVER_ERROR); //renvoie une erreur 500
+        String competences = uses.get().getCompetence();
+        competences += "; "+comp;
+        uses.get().setCompetence(competences);
+
+        etudiantRepository.save(uses.get());
+        return new ResponseEntity<>(
+                "Ajout reussi: " + competences,
+                HttpStatus.OK);
     }
 
 }

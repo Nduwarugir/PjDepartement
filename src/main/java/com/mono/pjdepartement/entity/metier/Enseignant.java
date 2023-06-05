@@ -18,10 +18,10 @@ public class Enseignant extends User implements Worker {
     @Column(length = 100)
     private String prenom;
 
-    @Column(length = 7, nullable = false)
+    @Column(length = 3, nullable = false)
     private String grade;
 
-    @Column(length = 7, nullable = false)
+    @Column(length = 50, nullable = false)
     private String specialite;
 
     @Column(nullable = false)

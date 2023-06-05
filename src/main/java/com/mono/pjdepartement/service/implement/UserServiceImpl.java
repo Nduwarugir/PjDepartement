@@ -34,12 +34,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findByNom(String nom) {
+    public List<User> getByNom(String nom) {
         return userRepository.findByNom(nom);
     }
 
     @Override
-    public List<User> findByNumTel(Long numTel) {
+    public List<User> getByNumTel(Long numTel) {
         return userRepository.findByNumTel(numTel);
     }
+
+    @Override
+    public List<User> getByMail(String mail) {
+        return userRepository.findByMail(mail);
+    }
+
 }

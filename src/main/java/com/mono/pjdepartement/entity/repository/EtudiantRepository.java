@@ -19,5 +19,8 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 	Etudiant findByMatricule(String matricule);
 
 	@Query("select e from Etudiant e where e.competence like %?1%")
-	List<Etudiant> findByCompetence(String xp);
+	List<Etudiant> findByCompetence(String competence);
+
+	@Query("select e from Etudiant e where e.niveau like %?1%")
+	List<Etudiant> findByNiveau(String niveau);
 }

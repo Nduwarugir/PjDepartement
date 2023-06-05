@@ -23,7 +23,7 @@ public abstract class User {
     @Column(length = 15, nullable = false)
     private Long numTel;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, unique = true)
     private String mail;
 
     @Column(length = 100, nullable = false)

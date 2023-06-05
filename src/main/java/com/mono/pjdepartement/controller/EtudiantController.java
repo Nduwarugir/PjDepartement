@@ -38,7 +38,7 @@ public class EtudiantController {
 		return etudiantService.getAll();
 	}
 
-	@GetMapping(path = "/read/id/{id}")
+	@GetMapping(path = "/read/{id}")
 	public Etudiant readEtudiant(@PathVariable Long id){
 		return etudiantService.getEtudiant(id);
 	}
@@ -58,9 +58,19 @@ public class EtudiantController {
 		return etudiantService.findByMatricule(mat);
 	}
 
-	@GetMapping("/read/xpLang/{xpL}")
-	public List<Etudiant> getEtudiantByxpLanguage(@PathVariable String xpL) {
-		return etudiantService.findByxpLanguage(xpL);
+	@GetMapping("/read/comp/{comp}")
+	public List<Etudiant> getEtudiantByxpLanguage(@PathVariable String comp) {
+		return etudiantService.findByCompetence(comp);
+	}
+
+	@GetMapping("/read/level/{level}")
+	public List<Etudiant> getEtudiantByLevel(@PathVariable String level) {
+		return etudiantService.findByNiveau(level);
+	}
+
+	@PutMapping(path = "/add/{id}")
+	public ResponseEntity<String> addCompetence(@PathVariable Long id, @RequestBody String comp) {
+		return etudiantService.addCompetence(id, comp);
 	}
 
     @PutMapping(path = "/add/{id}/article")
@@ -78,7 +88,7 @@ public class EtudiantController {
         return etudiantService.addProjet(projet, id);
     }
 
-    @GetMapping(path = "/read/{id}/project")
+    @GetMapping(path = "/read/{id}/projects")
     public List<Projet> readAllProject(@PathVariable Long id){
         return etudiantService.getAllProjects(id);
     }

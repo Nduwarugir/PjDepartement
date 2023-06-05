@@ -42,7 +42,7 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 
             if (entreprise.getPassword() == null)
                 return new ResponseEntity<>(
-                        "Vous devez entrer Votre mail",
+                        "Vous devez entrer Votre Password",
                         HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
             if (entreprise.getContributeNumber() == null)
