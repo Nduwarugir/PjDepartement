@@ -15,7 +15,7 @@ public class Etudiant extends User implements Worker {
     @Column(length = 20, nullable = false)
     private String matricule;
 
-    @Column(length = 100)
+    @Column(length = 100)   
     private String prenom;
 
     @Column(length = 7, nullable = false)
