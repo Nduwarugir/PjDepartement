@@ -29,11 +29,14 @@ public class Entreprise extends User {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Etudiant> stagiaires = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Etudiant> employes = new ArrayList<>();
+
     public Entreprise() {
         super();
     }
 
-    public Entreprise(Long idUser, String nom, Long numTel, String mail, String password, String photo, Long contributeNumber, String location, String webSite, Date creationDate) {
+    public Entreprise(Long idUser, String nom, Long numTel, String mail, String password, byte[] photo, Long contributeNumber, String location, String webSite, Date creationDate) {
         super(idUser, nom, numTel, mail, password, photo, "Entreprise");
         this.contributeNumber = contributeNumber;
         this.location = location;
@@ -89,6 +92,14 @@ public class Entreprise extends User {
         this.stagiaires = stagiaires;
     }
 
+    public List<Etudiant> getEmployes() {
+        return employes;
+    }
+
+    public void setEmployes(List<Etudiant> employes) {
+        this.employes = employes;
+    }
+
     @Override
     public String toString() {
         return "Entreprise{" +
@@ -96,6 +107,9 @@ public class Entreprise extends User {
                 ", location='" + location + '\'' +
                 ", webSite='" + webSite + '\'' +
                 ", creationDate=" + creationDate +
+                ", parraines=" + parraines +
+                ", employes=" + employes +
+                ", stagiaires=" + stagiaires +
                 "} " + super.toString();
     }
 

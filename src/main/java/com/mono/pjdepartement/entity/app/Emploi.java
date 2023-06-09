@@ -21,14 +21,14 @@ public class Emploi extends Offre {
 		super();
 	}
 
-	public Emploi(String poste, String description, String periode, String competences, Boolean etat, String secteur, Entreprise employeur) {
-		super(poste, description, periode, competences, etat);
+	public Emploi(String poste, String description, String periode, String competences, Boolean etat, String type, String secteur, Entreprise employeur) {
+		super(poste, description, periode, competences, etat, "Emploi");
 		this.secteur = secteur;
 		this.employeur = employeur;
 	}
 
-	public Emploi(String poste, String description, String periode, String competences, Boolean etat, String secteur, Entreprise employeur, Etudiant employe) {
-		super(poste, description, periode, competences, etat);
+	public Emploi(String poste, String description, String periode, String competences, Boolean etat, String type, String secteur, Entreprise employeur, Etudiant employe) {
+		super(poste, description, periode, competences, etat, "Emploi");
 		this.secteur = secteur;
 		this.employeur = employeur;
 		this.employe = employe;

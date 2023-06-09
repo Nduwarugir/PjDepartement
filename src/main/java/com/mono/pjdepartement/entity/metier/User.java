@@ -29,8 +29,9 @@ public abstract class User {
     @Column(length = 100, nullable = false)
     private String password;
 
-    @Column(length = 100)
-    private String photo;
+    @Lob
+    @Column(length = 1000)
+    private byte[] photo;
 
     @Column(length = 100)
     private String roles;
@@ -39,7 +40,7 @@ public abstract class User {
         super();
     }
 
-    public User(Long idUser, String nom, Long numTel, String mail, String password, String photo, String roles) {
+    public User(Long idUser, String nom, Long numTel, String mail, String password, byte[] photo, String roles) {
         this.idUser = idUser;
         this.nom = nom;
         this.numTel = numTel;
@@ -85,11 +86,11 @@ public abstract class User {
         this.password = password;
     }
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 

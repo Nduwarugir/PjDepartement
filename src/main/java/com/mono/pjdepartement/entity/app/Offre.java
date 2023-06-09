@@ -26,16 +26,20 @@ public abstract class Offre {
 	@Column(length = 150)
 	private Boolean etat;
 
-	public Offre() {
+	@Column(length = 150)
+	private String type;
+
+    public Offre() {
 		super();
 	}
 
-	public Offre(String poste, String description, String periode, String competences, Boolean etat) {
+	public Offre(String poste, String description, String periode, String competences, Boolean etat, String type) {
 		this.poste = poste;
 		this.description = description;
 		this.periode = periode;
 		this.competences = competences;
 		this.etat = etat;
+		this.type = type;
 	}
 
 	public long getIdOffre() {
@@ -82,6 +86,14 @@ public abstract class Offre {
 		this.etat = etat;
 	}
 
+	public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 	@Override
 	public String toString() {
 		return "Offre{" +
@@ -91,6 +103,7 @@ public abstract class Offre {
 				", periode='" + periode + '\'' +
 				", competences='" + competences + '\'' +
 				", etat=" + etat +
+				", type=" + type +
 				'}';
 	}
 }

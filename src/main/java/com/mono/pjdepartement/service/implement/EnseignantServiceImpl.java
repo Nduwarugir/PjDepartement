@@ -1,10 +1,12 @@
 package com.mono.pjdepartement.service.implement;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -117,7 +119,7 @@ public class EnseignantServiceImpl implements EnseignantService {
         if (enseignant.getPassword() != null || !uses.get().getPassword().equals(enseignant.getPassword())) // 1
             uses.get().setPassword(enseignant.getPassword());
 
-        if (enseignant.getPhoto() != null || !uses.get().getPhoto().equals(enseignant.getPhoto())) // 1
+        if (enseignant.getPhoto() != null || !Arrays.equals(uses.get().getPhoto(), enseignant.getPhoto())) // 1
             uses.get().setPhoto(enseignant.getPhoto());
 
         if (enseignant.getNumTel() != 0L || !(uses.get().getNumTel().equals(enseignant.getNumTel()))) // 1
@@ -138,7 +140,7 @@ public class EnseignantServiceImpl implements EnseignantService {
 
     @Override
     public List<Enseignant> getAll() {
-        return enseignantRepository.findAll();
+        return enseignantRepository.findAll(Sort.by("nom").ascending());
     }
 
     @Override

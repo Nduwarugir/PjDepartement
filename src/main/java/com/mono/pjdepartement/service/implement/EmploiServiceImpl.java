@@ -8,6 +8,7 @@ import com.mono.pjdepartement.entity.repository.EmploiRepository;
 import com.mono.pjdepartement.service.EmploiService;
 import com.mono.pjdepartement.service.EntrepriseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -80,7 +81,7 @@ public class EmploiServiceImpl implements EmploiService {
 
 	@Override
 	public List<Emploi> getAll() {
-		return emploiRepository.findAll();
+		return emploiRepository.findAll(Sort.by("poste").ascending());
 	}
 
 	@Override

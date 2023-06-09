@@ -41,7 +41,7 @@ public class PublicationController {
         return publicationService.getPub(id);
     }
 
-    @GetMapping(path = "/read/description/{desc}")
+    @GetMapping(path = "/read/desc/{desc}")
     public List<Publication> readPublicationByDescription(@PathVariable String desc){
         return publicationService.getByDescription(desc);
     }

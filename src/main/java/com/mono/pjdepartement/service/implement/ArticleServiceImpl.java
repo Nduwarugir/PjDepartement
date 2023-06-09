@@ -4,6 +4,7 @@ import com.mono.pjdepartement.entity.app.Article;
 import com.mono.pjdepartement.entity.repository.ArticleRepository;
 import com.mono.pjdepartement.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -86,7 +87,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<Article> getAll() {
-		return articleRepository.findAll();
+		return articleRepository.findAll(Sort.by("nom").ascending());
 	}
 
 	@Override

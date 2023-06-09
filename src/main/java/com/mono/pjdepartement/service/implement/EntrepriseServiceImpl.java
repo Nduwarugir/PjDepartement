@@ -6,10 +6,12 @@ import com.mono.pjdepartement.entity.metier.Etudiant;
 import com.mono.pjdepartement.entity.repository.EntrepriseRepository;
 import com.mono.pjdepartement.service.EntrepriseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,7 +93,7 @@ public class EntrepriseServiceImpl implements EntrepriseService {
         if (entreprise.getPassword() != null || !uses.get().getPassword().equals(entreprise.getPassword()))
             uses.get().setPassword(entreprise.getPassword());
 
-        if (entreprise.getPhoto() != null || !uses.get().getPhoto().equals(entreprise.getPhoto()))
+        if (entreprise.getPhoto() != null || !Arrays.equals(uses.get().getPhoto(), entreprise.getPhoto()))
             uses.get().setPhoto(entreprise.getPhoto());
 
         if (entreprise.getContributeNumber() != null || !uses.get().getContributeNumber().equals(entreprise.getContributeNumber()))
@@ -121,7 +123,7 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 
     @Override
     public List<Entreprise> getAll() {
-        return entrepriseRepository.findAll();
+        return entrepriseRepository.findAll(Sort.by("nom").ascending());
     }
 
     @Override

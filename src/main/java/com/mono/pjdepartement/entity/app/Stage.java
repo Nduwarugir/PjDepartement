@@ -22,13 +22,13 @@ public class Stage extends  Offre {
 		super();
 	}
 
-	public Stage(String poste, String description, String periode, String competences, Boolean etat, Entreprise employeur) {
-		super(poste, description, periode, competences, etat);
+	public Stage(String poste, String description, String periode, String competences, Boolean etat, String type, Entreprise employeur) {
+		super(poste, description, periode, competences, etat, "Stage");
 		this.employeur = employeur;
 	}
 
-	public Stage(String poste, String description, String periode, String competences, Boolean etat, Entreprise employeur, Etudiant employe) {
-		super(poste, description, periode, competences, etat);
+	public Stage(String poste, String description, String periode, String competences, Boolean etat, String type, Entreprise employeur, Etudiant employe) {
+		super(poste, description, periode, competences, etat, "Stage");
 		this.employeur = employeur;
 		this.employe = employe;
 	}

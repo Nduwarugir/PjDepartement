@@ -1,17 +1,20 @@
 package com.mono.pjdepartement.service.implement;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
 import com.mono.pjdepartement.entity.app.Article;
 import com.mono.pjdepartement.entity.app.Projet;
 import com.mono.pjdepartement.entity.metier.Etudiant;
 import com.mono.pjdepartement.entity.repository.EtudiantRepository;
 import com.mono.pjdepartement.service.EtudiantService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 
@@ -92,7 +95,7 @@ public class EtudiantServiceImpl implements EtudiantService {
         if (etudiant.getPassword() != null || !use.get().getPassword().equals(etudiant.getPassword()))
             use.get().setPassword(etudiant.getPassword());
 
-        if (etudiant.getPhoto() != null || !use.get().getPhoto().equals(etudiant.getPhoto()))
+        if (etudiant.getPhoto() != null || !Arrays.equals(use.get().getPhoto(), etudiant.getPhoto()))
             use.get().setPhoto(etudiant.getPhoto());
 
         if (etudiant.getMatricule() != null || !use.get().getMatricule().equals(etudiant.getMatricule()))
@@ -115,7 +118,7 @@ public class EtudiantServiceImpl implements EtudiantService {
 
     @Override
     public List<Etudiant> getAll() {
-        return etudiantRepository.findAll();
+        return etudiantRepository.findAll(Sort.by("nom").ascending());
     }
 
     @Override
